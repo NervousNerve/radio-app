@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import List from "../components/List";
-
 function Home() {
   const [channels, setChannels] = useState();
 
