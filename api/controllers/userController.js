@@ -29,7 +29,11 @@ const login = (req, res) => {
 
     delete userInDB.password;
     req.session.user = userInDB;
-    console.log("Logged in:", req.session.user.userName);
+    console.log(
+      "Logged in:",
+      req.session.user.firstName,
+      req.session.user.lastName
+    );
     res.json({ success: "Login successful", user: userInDB });
   });
 };
