@@ -20,7 +20,7 @@ const login = (req, res) => {
     }
 
     req.body.password = encrypt(req.body.password);
-    if (userInDB.password === req.body.password) {
+    if (userInDB.password !== req.body.password) {
       console.log("Unauthorized login attempt:", req.body);
 
       res.status(401).json({ error: "Bad credentials" });
