@@ -1,9 +1,13 @@
-const { BrowserRouter } = require("react-router-dom");
+import { BrowserRouter, Route } from "react-router-dom";
+
+import Home from "./views/Home";
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter></BrowserRouter>
+      <BrowserRouter>
+        <Route exact path="/" component={Home}></Route>
+      </BrowserRouter>
     </div>
   );
 }
