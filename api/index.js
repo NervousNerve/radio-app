@@ -2,6 +2,9 @@ const express = require("express");
 const session = require("express-session");
 
 const userRoutes = require("./routes/userRoutes");
+const channelsRoutes = require("./routes/channelsRoutes");
+const categoriesRoute = require("./routes/categoriesRoute");
+const programsRoute = require("./routes/programsRoute");
 
 const port = 3001;
 const app = express();
@@ -18,6 +21,9 @@ app.use(
 );
 
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/channels", channelsRoutes);
+app.use("/api/v1/categories", categoriesRoute);
+app.use("/api/v1/programs", programsRoute);
 
 app.listen(port, (err) => {
   if (err) {
