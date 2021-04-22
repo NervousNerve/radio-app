@@ -24,7 +24,7 @@ function Home() {
               key={channel.id}
               className="grid-row align-left bg-light"
             >
-              <img src={channel.image} style={{ height: "4rem" }}></img>
+              <img src={channel.image} style={{ height: "4rem" }} alt=""></img>
               <p className="text-bold px-1">{channel.name}</p>
             </Link>
           ))}
