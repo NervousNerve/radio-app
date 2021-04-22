@@ -1,6 +1,6 @@
 const sqlite3 = require("sqlite3");
 const path = require("path");
-const Encrypt = require("../Encrypt");
+const encrypt = require("../encrypt");
 
 const db = new sqlite3.Database(path.join(__dirname, "../usersdb.db"));
 
@@ -19,7 +19,7 @@ const login = (req, res) => {
       return;
     }
 
-    req.body.password = Encrypt.encrypt(req.body.password);
+    req.body.password = encrypt(req.body.password);
     if (userInDB.password === req.body.password) {
       console.log("Unauthorized login attempt:", req.body);
 
@@ -51,7 +51,7 @@ const register = (req, res) => {
     }
   });
 
-  userToRegister.password = Encrypt.encrypt(userToRegister.password);
+  userToRegister.password = encrypt(userToRegister.password);
 
   query = `
     INSERT INTO users (userName, email, password)
