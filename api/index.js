@@ -6,6 +6,7 @@ const channelsRoute = require("./routes/channelsRoute");
 const categoriesRoute = require("./routes/categoriesRoute");
 const programsRoute = require("./routes/programsRoute");
 const scheduleRoute = require("./routes/scheduleRoute");
+const episodesRoute = require("./routes/episodesRoute");
 
 const port = 3001;
 const app = express();
@@ -26,6 +27,7 @@ app.use("/api/v1/channels", channelsRoute);
 app.use("/api/v1/categories", categoriesRoute);
 app.use("/api/v1/programs", programsRoute);
 app.use("/api/v1/schedule", scheduleRoute);
+app.use("/api/v1/episodes", episodesRoute);
 
 app.listen(port, (err) => {
   if (err) {
