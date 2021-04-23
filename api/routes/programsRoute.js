@@ -1,9 +1,9 @@
 const express = require("express");
 
 const router = express.Router();
-const programsRoute = require("../controllers/programsController");
+const programsController = require("../controllers/programsController");
 
-router.get("", programsRoute.getAllPrograms);
-router.get("/:id", programsRoute.getProgram);
+router.get("", programsController.getAllPrograms);
+router.get("/:id", programsController.getProgram);
 
 module.exports = router;
