@@ -22,7 +22,8 @@ code {
 }
 
 a { color: black; text-decoration: none; }
-a:hover { color: gray; text-decoration: none; }
+a:hover { text-decoration: underline; }
+a.active { font-weight: bold; }
 
 .grid-row { display: grid;  grid-auto-flow: column; }
 .grid-col { display: grid;  grid-auto-flow: row; }
