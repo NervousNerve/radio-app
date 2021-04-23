@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import List from "../components/List";
 
 function Home() {
+  const history = useHistory();
   const [channels, setChannels] = useState();
 
   useEffect(() => {
@@ -12,23 +14,34 @@ function Home() {
     })();
   }, []);
 
+  const handleClickItem = (item) => {
+    history.push("/channels/" + item.id);
+  };
+
   return (
     <div>
-      <h1>Home</h1>
-
-      <div className="grid-col gap-1">
-        {channels &&
-          channels.map((channel) => (
-            <Link
-              to={`/channels/${channel.id}`}
-              key={channel.id}
-              className="grid-row align-left bg-light"
-            >
-              <img src={channel.image} style={{ height: "4rem" }} alt=""></img>
-              <p className="text-bold px-1">{channel.name}</p>
-            </Link>
-          ))}
+      <div
+        className="grid-row justify-start align-center bg-light"
+        style={{ height: "4rem" }}
+      >
+        <div className="grid-row mx-1 gap-1">
+          <p className="text-bold m-0">Kanaler</p>
+          <Link to="/categories">Kategorier</Link>
+        </div>
       </div>
+
+      {channels && (
+        <List
+          items={channels.map((channel) => {
+            return {
+              image: channel.image,
+              text: channel.name,
+              id: channel.id,
+            };
+          })}
+          clickItem={handleClickItem}
+        ></List>
+      )}
     </div>
   );
 }
