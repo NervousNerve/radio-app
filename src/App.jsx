@@ -2,6 +2,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 
 import ChannelContextProvider from "./contexts/ChannelContext";
 
+import Navbar from "./components/Navbar";
 import Home from "./views/Home";
 import Channel from "./views/Channel";
 import Program from "./views/Program";
@@ -13,6 +14,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <Navbar />
         <Route exact path="/" component={Home}></Route>
         <Route path="/channels/:id">
           <ChannelContextProvider>
