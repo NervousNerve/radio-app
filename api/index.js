@@ -1,8 +1,8 @@
 const express = require("express");
 const session = require("express-session");
 
-const userRoutes = require("./routes/userRoutes");
-const channelsRoutes = require("./routes/channelsRoutes");
+const usersRoute = require("./routes/usersRoute");
+const channelsRoute = require("./routes/channelsRoute");
 const categoriesRoute = require("./routes/categoriesRoute");
 const programsRoute = require("./routes/programsRoute");
 const scheduleRoute = require("./routes/scheduleRoute");
@@ -21,8 +21,8 @@ app.use(
   })
 );
 
-app.use("/api/v1/users", userRoutes);
-app.use("/api/v1/channels", channelsRoutes);
+app.use("/api/v1/users", usersRoute);
+app.use("/api/v1/channels", channelsRoute);
 app.use("/api/v1/categories", categoriesRoute);
 app.use("/api/v1/programs", programsRoute);
 app.use("/api/v1/schedule", scheduleRoute);
