@@ -28,7 +28,8 @@ function Programs() {
   }, [categoryId]);
 
   return (
-    <div>
+    <div className="grid-col gap-1 p-1">
+      <div className="grid-row justify-center gap-1">
       <label>Kategori:</label>
       <select
         onChange={(e) => {
