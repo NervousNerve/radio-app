@@ -21,7 +21,8 @@ function Programs() {
 
   useEffect(() => {
     (async () => {
-      const response = await fetch("/api/v1/programs?category=" + categoryId);
+      const url = "/api/v1/programs?category=" + categoryId;
+      const response = await fetch(url);
       const data = await response.json();
       setPrograms(data);
     })();
@@ -30,20 +31,22 @@ function Programs() {
   return (
     <div className="grid-col gap-1 p-1">
       <div className="grid-row justify-center gap-1">
-      <label>Kategori:</label>
-      <select
-        onChange={(e) => {
-          setCategoryId(e.target.value);
-        }}
-      >
-        <option>Alla kategorier</option>
-        {categories &&
-          categories.map((category, i) => (
-            <option value={category.id} key={i}>
-              {category.name}
-            </option>
-          ))}
-      </select>
+        <label>Kategori:</label>
+        <select
+          onChange={(e) => {
+            if (e.target.value === "0") setCategoryId(undefined);
+            else setCategoryId(e.target.value);
+          }}
+        >
+          <option value={0}>Alla kategorier</option>
+          {categories &&
+            categories.map((category, i) => (
+              <option value={category.id} key={i}>
+                {category.name}
+              </option>
+            ))}
+        </select>
+      </div>
 
       {programs && (
         <List
