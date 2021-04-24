@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
-import List from "../../components/List";
+import List from "../components/List";
 
 function Programs() {
   const history = useHistory();

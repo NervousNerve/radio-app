@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 
 import { ChannelContext } from "../contexts/ChannelContext";
 
-import Schedule from "./channels/Schedule";
-import Programs from "./channels/Programs";
+import Schedule from "./ChannelSchedule";
+import Programs from "./ChannelPrograms";
 
 function Channel(props) {
   const { channel } = useContext(ChannelContext);

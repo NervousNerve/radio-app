@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
-import List from "../../components/List";
-import { ChannelContext } from "../../contexts/ChannelContext";
-import parseDate from "../../util/parseDate";
+import List from "../components/List";
+import { ChannelContext } from "../contexts/ChannelContext";
+import parseDate from "../util/parseDate";
 
 function Schedule() {
   const history = useHistory();
