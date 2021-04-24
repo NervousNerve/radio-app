@@ -1,4 +1,4 @@
 .listItem:hover {
   cursor: pointer;
-  background-color: var(--bg-dark);
+  background-color: var(--color-dark);
 }
