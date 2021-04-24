@@ -1,4 +1,4 @@
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { QueryParamProvider } from "use-query-params";
 
 import ChannelContextProvider from "./contexts/ChannelContext";
@@ -17,16 +17,18 @@ function App() {
       <BrowserRouter>
         <QueryParamProvider ReactRouterRoute={Route}>
           <Navbar />
-          <Route exact path="/" component={Home}></Route>
-          <Route path="/channels/:id">
-            <ChannelContextProvider>
-              <Channel />
-            </ChannelContextProvider>
-          </Route>
-          <Route path="/programs/:id" component={Program}></Route>
-          <Route path="/episode/:id" component={Episode}></Route>
-          <Route exact path="/categories" component={Categories}></Route>
-          <Route path="/categories/:id" component={Category}></Route>
+          <Switch>
+            <Route path="/channels/:id">
+              <ChannelContextProvider>
+                <Channel />
+              </ChannelContextProvider>
+            </Route>
+            <Route path="/programs/:id" component={Program}></Route>
+            <Route path="/episode/:id" component={Episode}></Route>
+            <Route exact path="/categories" component={Categories}></Route>
+            <Route path="/categories/:id" component={Category}></Route>
+            <Route path="/" component={Home}></Route>
+          </Switch>
         </QueryParamProvider>
       </BrowserRouter>
     </div>
