@@ -2,7 +2,7 @@ import style from "./css/List.module.css";
 
 function List(props) {
   return (
-    <div className="grid-col gap-1 p-1">
+    <div className="grid-col gap-1">
       {props.items &&
         props.items.map((item, i) => (
           <div key={i}>

@@ -17,7 +17,7 @@ function Channels() {
   }, []);
 
   return (
-    <div>
+    <div className="p-1">
       {channels && (
         <List
           items={channels.map((channel) => {

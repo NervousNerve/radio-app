@@ -32,13 +32,15 @@ function Channel(props) {
         </div>
       </div>
 
-      <Route exact path={`/channels/:id`}>
-        <Schedule />
-      </Route>
+      <div className="p-1">
+        <Route exact path={`/channels/:id`}>
+          <Schedule />
+        </Route>
 
-      <Route path={`/channels/:id/programs`}>
-        <Programs />
-      </Route>
+        <Route path={`/channels/:id/programs`}>
+          <Programs />
+        </Route>
+      </div>
     </div>
   );
 }

@@ -16,7 +16,7 @@ function Program() {
   if (!program) return null;
 
   return (
-    <div>
+    <div className="p-1">
       <h1>{program.name}</h1>
       <p>{program.description}</p>
     </div>
