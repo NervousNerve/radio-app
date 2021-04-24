@@ -19,18 +19,20 @@ function Programs() {
   if (!programs) return null;
 
   return (
-    <List
-      items={programs.map((program) => {
-        return {
-          image: program.programimage,
-          text: program.name,
-          id: program.id,
-        };
-      })}
-      clickItem={(item) => {
-        history.push("/programs/" + item.id);
-      }}
-    />
+    <div className="grid-col gap-1 p-1">
+      <List
+        items={programs.map((program) => {
+          return {
+            image: program.programimage,
+            text: program.name,
+            id: program.id,
+          };
+        })}
+        clickItem={(item) => {
+          history.push("/programs/" + item.id);
+        }}
+      />
+    </div>
   );
 }
 
