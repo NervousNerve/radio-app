@@ -10,20 +10,20 @@ function Home() {
       <Headerbar>
         <div className="grid-row mx-1 gap-1">
           <NavLink exact to="/">
-            Program
-          </NavLink>
-          <NavLink exact to="/channels">
             Kanaler
+          </NavLink>
+          <NavLink exact to="/programs">
+            Programs
           </NavLink>
         </div>
       </Headerbar>
 
       <Route exact path={"/"}>
-        <Programs />
+        <Channels />
       </Route>
 
-      <Route path={`/channels`}>
-        <Channels />
+      <Route path={`/programs`}>
+        <Programs />
       </Route>
     </div>
   );
