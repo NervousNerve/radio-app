@@ -1,6 +1,8 @@
 :root {
   --color-light: #eeeeee;
   --color-dark: #dddddd;
+
+  --bar-height: 3rem;
 }
 
 html {
@@ -106,3 +108,10 @@ select {
 .py-0   { padding-top: 0;       padding-bottom: 0; }
 .py-05  { padding-top: 0.5rem;  padding-bottom: 0.5rem; }
 .py-1   { padding-top: 1rem;    padding-bottom: 1rem; }
+
+
+@media screen and (min-width: 375px) {
+  :root {
+    --bar-height: 4rem;
+  }
+}
