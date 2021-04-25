@@ -8,7 +8,7 @@ function Home() {
   return (
     <div>
       <Headerbar>
-        <div className="grid-row mx-1 gap-1">
+        <div className="grid-row gap-1">
           <NavLink exact to="/">
             Kanaler
           </NavLink>
