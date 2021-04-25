@@ -21,7 +21,7 @@ function Programs() {
   if (!programs) return null;
 
   return (
-    <div className="grid-col gap-1 p-1">
+    <div className="grid-col gap-1 p-1 container">
       <List>
         {programs &&
           programs

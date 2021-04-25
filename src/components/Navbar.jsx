@@ -4,10 +4,12 @@ import style from "./css/Navbar.module.css";
 
 function Navbar() {
   return (
-    <div className={`${style.navbar} px-1 bg-black`}>
-      <Link to="/" className={style.logo}>
-        Radio<strong>Logo</strong>
-      </Link>
+    <div className="bg-black">
+      <div className={`${style.navbar} px-1 container`}>
+        <Link to="/" className={style.logo}>
+          Radio<strong>Logo</strong>
+        </Link>
+      </div>
     </div>
   );
 }

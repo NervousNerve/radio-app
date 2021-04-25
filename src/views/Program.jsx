@@ -67,7 +67,7 @@ function Program() {
       </Headerbar>
 
       {!episode && (
-        <div className="p-1">
+        <div className="container p-1">
           <img
             src={program.programimagetemplatewide}
             className="width-100"
@@ -104,7 +104,7 @@ function Program() {
       )}
 
       {episode && (
-        <div className="p-1">
+        <div className="container p-1">
           <img src={episode.imageurltemplate} className="width-100" alt="" />
           <p>{episode.description}</p>
           <p className="color-dark">

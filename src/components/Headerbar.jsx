@@ -2,7 +2,11 @@ import style from "./css/Headerbar.module.css";
 
 function Headerbar(props) {
   return (
-    <div className={`${style.headerbar} px-1 bg-light`}>{props.children}</div>
+    <div className="bg-light">
+      <div className={`${style.headerbar} px-1 container`}>
+        {props.children}
+      </div>
+    </div>
   );
 }
 

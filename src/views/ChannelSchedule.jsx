@@ -33,7 +33,7 @@ function Schedule() {
   if (!schedule) return null;
 
   return (
-    <div className="grid-col gap-1 p-1">
+    <div className="grid-col gap-1 p-1 container">
       <div className="grid-row justify-center gap-1">
         <label>Datum:</label>
         <input
