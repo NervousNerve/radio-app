@@ -65,7 +65,7 @@ function Programs() {
                   style={{ width: "var(--bar-height)" }}
                   alt=""
                 />
-                <p className="text-bold px-1">{program.name}</p>
+                <p className="text-bold m-0 px-1">{program.name}</p>
               </ListItem>
             ))}
       </List>

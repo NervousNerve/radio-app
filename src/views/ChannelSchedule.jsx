@@ -70,7 +70,7 @@ function Schedule() {
                   style={{ width: "var(--bar-height)" }}
                   alt=""
                 />
-                <p className="text-bold px-1">{episode.title}</p>
+                <p className="text-bold m-0 px-1">{episode.title}</p>
               </ListItem>
             ))}
       </List>
