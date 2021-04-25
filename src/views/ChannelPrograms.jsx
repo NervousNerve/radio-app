@@ -29,16 +29,12 @@ function Programs() {
             .map((program) => (
               <ListItem
                 key={program.id}
+                thumbnail={program.programimage}
                 onClick={() => {
                   history.push("/programs/" + program.id);
                 }}
               >
-                <img
-                  src={program.programimage}
-                  style={{ width: "var(--bar-height)" }}
-                  alt=""
-                />
-                <p className="text-bold m-0 px-1">{program.name}</p>
+                <p className="text-bold m-0">{program.name}</p>
               </ListItem>
             ))}
       </List>

@@ -23,16 +23,12 @@ function Channels() {
           channels.map((channel) => (
             <ListItem
               key={channel.id}
+              thumbnail={channel.image}
               onClick={() => {
                 history.push("/channels/" + channel.id);
               }}
             >
-              <img
-                src={channel.image}
-                style={{ width: "var(--bar-height)" }}
-                alt=""
-              />
-              <p className="text-bold m-0 px-1">{channel.name}</p>
+              <p className="text-bold m-0">{channel.name}</p>
             </ListItem>
           ))}
       </List>

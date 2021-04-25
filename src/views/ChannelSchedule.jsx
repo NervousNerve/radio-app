@@ -57,6 +57,7 @@ function Schedule() {
             .map((episode, i) => (
               <ListItem
                 key={i}
+                thumbnail={episode.imageurl || channel.image}
                 onClick={() => {
                   // Go to program page
                   history.push(`/programs/${episode.program.id}`);
@@ -65,12 +66,7 @@ function Schedule() {
                   // history.push(`/programs/${episode.program.id}?episode=${episode.episodeid}`);
                 }}
               >
-                <img
-                  src={episode.imageurl || channel.image}
-                  style={{ width: "var(--bar-height)" }}
-                  alt=""
-                />
-                <p className="text-bold m-0 px-1">{episode.title}</p>
+                <p className="text-bold m-0">{episode.title}</p>
               </ListItem>
             ))}
       </List>

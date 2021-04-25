@@ -1,4 +1,8 @@
 .listItem:hover {
   cursor: pointer;
-  background-color: var(--color-dark);
+  background-color: var(--bg-dark);
+}
+
+.thumbnail {
+  width: var(--bar-height);
 }

@@ -1,6 +1,9 @@
 :root {
-  --color-light: #eeeeee;
-  --color-dark: #dddddd;
+  --bg-light: #eeeeee;
+  --bg-dark: #dddddd;
+
+  --color-light: #aaaaaa;
+  --color-dark: #666666;
 
   --bar-height: 3rem;
 
@@ -58,15 +61,17 @@ select {
 
 .bg-white { background-color: white; }
 .bg-black { background-color: black; }
-.bg-light { background-color: var(--color-light); }
-.bg-dark  { background-color: var(--color-dark); }
+.bg-light { background-color: var(--bg-light); }
+.bg-dark  { background-color: var(--bg-dark); }
 
 .color-white { color: white; }
 .color-black { color: black; }
 .color-light { color: var(--color-light); }
 .color-dark { color: var(--color-dark); }
 
-.font-size-1 { font-size: 1rem; }
+.font-size-sm { font-size: 0.8rem; }
+.font-size-md { font-size: 1rem; }
+.font-size-lg { font-size: 1.25rem; }
 
 .text-normal { font-weight: normal; }
 .text-bold { font-weight: bold; }
