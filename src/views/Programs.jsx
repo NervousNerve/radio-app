@@ -52,9 +52,9 @@ function Programs() {
         <List
           items={programs.map((program) => {
             return {
+              id: program.id,
               image: program.programimage,
               text: program.name,
-              id: program.id,
             };
           })}
           clickItem={(item) => {
