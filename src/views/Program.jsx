@@ -72,7 +72,7 @@ function Program() {
                   >
                     <img
                       src={episode.imageurl}
-                      style={{ width: "4rem" }}
+                      style={{ width: "var(--bar-height)" }}
                       alt=""
                     />
                     <p className="text-bold px-1">{episode.title}</p>

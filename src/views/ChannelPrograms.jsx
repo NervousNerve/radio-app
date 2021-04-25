@@ -35,7 +35,7 @@ function Programs() {
               >
                 <img
                   src={program.programimage}
-                  style={{ width: "4rem" }}
+                  style={{ width: "var(--bar-height)" }}
                   alt=""
                 />
                 <p className="text-bold px-1">{program.name}</p>

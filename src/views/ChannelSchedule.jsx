@@ -67,7 +67,7 @@ function Schedule() {
               >
                 <img
                   src={episode.imageurl || channel.image}
-                  style={{ width: "4rem" }}
+                  style={{ width: "var(--bar-height)" }}
                   alt=""
                 />
                 <p className="text-bold px-1">{episode.title}</p>

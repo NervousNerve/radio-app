@@ -27,7 +27,11 @@ function Channels() {
                 history.push("/channels/" + channel.id);
               }}
             >
-              <img src={channel.image} style={{ width: "4rem" }} alt="" />
+              <img
+                src={channel.image}
+                style={{ width: "var(--bar-height)" }}
+                alt=""
+              />
               <p className="text-bold px-1">{channel.name}</p>
             </ListItem>
           ))}

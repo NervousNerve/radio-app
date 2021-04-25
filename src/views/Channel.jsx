@@ -16,7 +16,11 @@ function Channel(props) {
   return (
     <div>
       <Headerbar>
-        <img src={channel.image} alt="" style={{ height: "4rem" }}></img>
+        <img
+          src={channel.image}
+          alt=""
+          style={{ height: "var(--bar-height)" }}
+        ></img>
         <div className="grid-row align-center bg-dark px-1 height-100">
           <p className="text-bold m-0">{channel.name}</p>
         </div>
