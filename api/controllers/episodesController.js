@@ -27,14 +27,14 @@ async function getAllEpisodes(req, res) {
 }
 
 async function getEpisode(req, res) {
-  if (!req.query.id) {
+  if (!req.params.id) {
     console.log("No id specified!", req.query.id);
     res.status(400).send();
     return;
   }
 
   try {
-    const url = `http://api.sr.se/api/v2/episodes/get?id=${req.query.id}&format=json`;
+    const url = `http://api.sr.se/api/v2/episodes/get?id=${req.params.id}&format=json`;
     const response = await fetch(url);
 
     if (!response.ok) {
