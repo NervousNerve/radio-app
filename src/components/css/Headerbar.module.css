@@ -1,0 +1,8 @@
+.headerbar {
+  min-height: var(--bar-height);
+
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: start;
+}

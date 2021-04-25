@@ -1,12 +1,7 @@
+import style from "./css/Headerbar.module.css";
+
 function Headerbar(props) {
-  return (
-    <div
-      className="grid-row justify-start align-center bg-light"
-      style={{ height: "4rem" }}
-    >
-      {props.children}
-    </div>
-  );
+  return <div className={`${style.headerbar} bg-light`}>{props.children}</div>;
 }
 
 export default Headerbar;
