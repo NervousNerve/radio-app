@@ -21,7 +21,7 @@ function List(props) {
                 props.clickItem(item);
               }}
             >
-              <img src={item.image} style={{ height: "4rem" }} alt=""></img>
+              <img src={item.image} style={{ width: "4rem" }} alt="" />
               <p className="text-bold px-1">{item.text}</p>
             </div>
           </div>
