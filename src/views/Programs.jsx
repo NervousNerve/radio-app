@@ -51,21 +51,23 @@ function Programs() {
 
       <List>
         {programs &&
-          programs.map((program, i) => (
-            <ListItem
-              key={program.id}
-              onClick={() => {
-                history.push("/programs/" + program.id);
-              }}
-            >
-              <img
-                src={program.programimage}
-                style={{ width: "4rem" }}
-                alt=""
-              />
-              <p className="text-bold px-1">{program.name}</p>
-            </ListItem>
-          ))}
+          programs
+            .sort((a, b) => a.name.localeCompare(b.name, "sv"))
+            .map((program) => (
+              <ListItem
+                key={program.id}
+                onClick={() => {
+                  history.push("/programs/" + program.id);
+                }}
+              >
+                <img
+                  src={program.programimage}
+                  style={{ width: "4rem" }}
+                  alt=""
+                />
+                <p className="text-bold px-1">{program.name}</p>
+              </ListItem>
+            ))}
       </List>
     </div>
   );
