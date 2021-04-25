@@ -2,14 +2,12 @@ import { NavLink, Route } from "react-router-dom";
 
 import Programs from "./Programs";
 import Channels from "./Channels";
+import Headerbar from "../components/Headerbar";
 
 function Home() {
   return (
     <div>
-      <div
-        className="grid-row justify-start align-center bg-light"
-        style={{ height: "4rem" }}
-      >
+      <Headerbar>
         <div className="grid-row mx-1 gap-1">
           <NavLink exact to="/">
             Program
@@ -18,7 +16,7 @@ function Home() {
             Kanaler
           </NavLink>
         </div>
-      </div>
+      </Headerbar>
 
       <Route exact path={"/"}>
         <Programs />

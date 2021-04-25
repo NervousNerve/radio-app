@@ -6,6 +6,7 @@ import { ChannelContext } from "../contexts/ChannelContext";
 
 import Schedule from "./ChannelSchedule";
 import Programs from "./ChannelPrograms";
+import Headerbar from "../components/Headerbar";
 
 function Channel(props) {
   const { channel } = useContext(ChannelContext);
@@ -14,10 +15,7 @@ function Channel(props) {
 
   return (
     <div>
-      <div
-        className="grid-row justify-start align-center bg-light"
-        style={{ height: "4rem" }}
-      >
+      <Headerbar>
         <img src={channel.image} alt="" style={{ height: "4rem" }}></img>
         <div className="grid-row align-center bg-dark px-1 height-100">
           <p className="text-bold m-0">{channel.name}</p>
@@ -30,7 +28,7 @@ function Channel(props) {
             Alla program
           </NavLink>
         </div>
-      </div>
+      </Headerbar>
 
       <Route exact path={`/channels/:id`}>
         <Schedule />
