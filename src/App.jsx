@@ -8,8 +8,6 @@ import Home from "./views/Home";
 import Channel from "./views/Channel";
 import Program from "./views/Program";
 import Episode from "./views/Episode";
-import Categories from "./views/Categories";
-import Category from "./views/Category";
 
 function App() {
   return (
@@ -25,8 +23,6 @@ function App() {
             </Route>
             <Route path="/programs/:id" component={Program}></Route>
             <Route path="/episode/:id" component={Episode}></Route>
-            <Route exact path="/categories" component={Categories}></Route>
-            <Route path="/categories/:id" component={Category}></Route>
             <Route path="/" component={Home}></Route>
           </Switch>
         </QueryParamProvider>
