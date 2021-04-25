@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
+
 import List from "../components/List";
+import ListItem from "../components/ListItem";
 
 function Programs() {
   const history = useHistory();
@@ -20,18 +22,24 @@ function Programs() {
 
   return (
     <div className="grid-col gap-1 p-1">
-      <List
-        items={programs.map((program) => {
-          return {
-            image: program.programimage,
-            text: program.name,
-            id: program.id,
-          };
-        })}
-        clickItem={(item) => {
-          history.push("/programs/" + item.id);
-        }}
-      />
+      <List>
+        {programs &&
+          programs.map((program) => (
+            <ListItem
+              key={program.id}
+              onClick={() => {
+                history.push("/programs/" + program.id);
+              }}
+            >
+              <img
+                src={program.programimage}
+                style={{ width: "4rem" }}
+                alt=""
+              />
+              <p className="text-bold px-1">{program.name}</p>
+            </ListItem>
+          ))}
+      </List>
     </div>
   );
 }

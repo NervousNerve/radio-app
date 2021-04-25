@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 
 import List from "../components/List";
+import ListItem from "../components/ListItem";
 
 function Channels() {
   const history = useHistory();
-
   const [channels, setChannels] = useState();
 
   useEffect(() => {
@@ -18,20 +18,20 @@ function Channels() {
 
   return (
     <div className="p-1">
-      {channels && (
-        <List
-          items={channels.map((channel) => {
-            return {
-              image: channel.image,
-              text: channel.name,
-              id: channel.id,
-            };
-          })}
-          clickItem={(item) => {
-            history.push("/channels/" + item.id);
-          }}
-        ></List>
-      )}
+      <List>
+        {channels &&
+          channels.map((channel) => (
+            <ListItem
+              key={channel.id}
+              onClick={() => {
+                history.push("/channels/" + channel.id);
+              }}
+            >
+              <img src={channel.image} style={{ width: "4rem" }} alt="" />
+              <p className="text-bold px-1">{channel.name}</p>
+            </ListItem>
+          ))}
+      </List>
     </div>
   );
 }

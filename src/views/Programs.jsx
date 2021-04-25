@@ -3,6 +3,7 @@ import { useHistory } from "react-router";
 import { useQueryParam } from "use-query-params";
 
 import List from "../components/List";
+import ListItem from "../components/ListItem";
 
 function Programs() {
   const history = useHistory();
@@ -48,20 +49,24 @@ function Programs() {
         </select>
       </div>
 
-      {programs && (
-        <List
-          items={programs.map((program) => {
-            return {
-              id: program.id,
-              image: program.programimage,
-              text: program.name,
-            };
-          })}
-          clickItem={(item) => {
-            history.push("/programs/" + item.id);
-          }}
-        ></List>
-      )}
+      <List>
+        {programs &&
+          programs.map((program, i) => (
+            <ListItem
+              key={program.id}
+              onClick={() => {
+                history.push("/programs/" + program.id);
+              }}
+            >
+              <img
+                src={program.programimage}
+                style={{ width: "4rem" }}
+                alt=""
+              />
+              <p className="text-bold px-1">{program.name}</p>
+            </ListItem>
+          ))}
+      </List>
     </div>
   );
 }

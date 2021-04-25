@@ -4,6 +4,7 @@ import { useQueryParam } from "use-query-params";
 
 import Headerbar from "../components/Headerbar";
 import List from "../components/List";
+import ListItem from "../components/ListItem";
 
 function Program() {
   const { id } = useParams();
@@ -60,20 +61,24 @@ function Program() {
 
           <h2>Avsnitt</h2>
           <div className="grid-col gap-1">
-            {episodes && (
-              <List
-                items={episodes.map((episode) => {
-                  return {
-                    id: episode.id,
-                    image: episode.imageurl,
-                    text: episode.title,
-                  };
-                })}
-                clickItem={(item) => {
-                  setEpisodeId(item.id);
-                }}
-              ></List>
-            )}
+            <List>
+              {episodes &&
+                episodes.map((episode) => (
+                  <ListItem
+                    key={episode.id}
+                    onClick={() => {
+                      setEpisodeId(episode.id);
+                    }}
+                  >
+                    <img
+                      src={episode.imageurl}
+                      style={{ width: "4rem" }}
+                      alt=""
+                    />
+                    <p className="text-bold px-1">{episode.title}</p>
+                  </ListItem>
+                ))}
+            </List>
           </div>
         </div>
       )}

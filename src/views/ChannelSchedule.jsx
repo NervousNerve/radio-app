@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { useQueryParam } from "use-query-params";
-import List from "../components/List";
+
 import { ChannelContext } from "../contexts/ChannelContext";
 import parseDate from "../util/parseDate";
+import List from "../components/List";
+import ListItem from "../components/ListItem";
 
 function Schedule() {
   const history = useHistory();
@@ -45,23 +47,33 @@ function Schedule() {
         ></input>
       </div>
 
-      <List
-        items={schedule
-          .filter(
-            (episode) => episode.endtimeutc >= Date.parse(dateStr || new Date())
-          )
-          .map((episode) => {
-            return {
-              image: episode.imageurl || channel.image,
-              text: episode.title,
-              id: episode.program.id,
-              timestamp: episode.starttimeutc,
-            };
-          })}
-        clickItem={(item) => {
-          history.push("/programs/" + item.id);
-        }}
-      />
+      <List>
+        {schedule &&
+          schedule
+            .filter(
+              (episode) =>
+                episode.endtimeutc >= Date.parse(dateStr || new Date())
+            )
+            .map((episode, i) => (
+              <ListItem
+                key={i}
+                onClick={() => {
+                  // Go to program page
+                  history.push(`/programs/${episode.program.id}`);
+
+                  // Go to episode page
+                  // history.push(`/programs/${episode.program.id}?episode=${episode.episodeid}`);
+                }}
+              >
+                <img
+                  src={episode.imageurl || channel.image}
+                  style={{ width: "4rem" }}
+                  alt=""
+                />
+                <p className="text-bold px-1">{episode.title}</p>
+              </ListItem>
+            ))}
+      </List>
     </div>
   );
 }
