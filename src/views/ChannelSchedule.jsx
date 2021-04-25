@@ -4,7 +4,7 @@ import { useQueryParam } from "use-query-params";
 
 import { ChannelContext } from "../contexts/ChannelContext";
 import parseDate from "../util/parseDate";
-import List from "../components/List";
+import ScheduleList from "../components/ScheduleList";
 import ListItem from "../components/ListItem";
 
 function Schedule() {
@@ -47,7 +47,7 @@ function Schedule() {
         ></input>
       </div>
 
-      <List>
+      <ScheduleList>
         {schedule &&
           schedule
             .filter(
@@ -58,18 +58,15 @@ function Schedule() {
               <ListItem
                 key={i}
                 thumbnail={episode.imageurl || channel.image}
+                timestamp={episode.starttimeutc}
                 onClick={() => {
-                  // Go to program page
                   history.push(`/programs/${episode.program.id}`);
-
-                  // Go to episode page
-                  // history.push(`/programs/${episode.program.id}?episode=${episode.episodeid}`);
                 }}
               >
                 <p className="text-bold m-0">{episode.title}</p>
               </ListItem>
             ))}
-      </List>
+      </ScheduleList>
     </div>
   );
 }
