@@ -15,7 +15,12 @@ function ProgramDetails() {
         className="width-100"
         alt=""
       />
+
       <p>{program.description}</p>
+
+      <button className="btn-round">
+        <i class="far fa-heart" /> Spara favorit
+      </button>
 
       <h2>Avsnitt</h2>
       <div className="grid-col gap-1">

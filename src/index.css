@@ -51,10 +51,20 @@ input, select {
 button {
   font-size: 1rem;
   border: none;
-  border-radius: 0;
-  padding: .25rem;
+  padding: .5em 1em;
+  background: var(--bg-light);
+}
+button:hover {
+  background: var(--bg-dark);
 }
 
+.btn-square {
+  border-radius: 0;
+}
+.btn-round {
+  border-radius: 100vh;
+}
+  
 .container {
   max-width: 1000px;
   margin-left: auto;
@@ -82,6 +92,7 @@ button {
 .bg-black { background-color: black; }
 .bg-light { background-color: var(--bg-light); }
 .bg-dark  { background-color: var(--bg-dark); }
+.bg-none  { background: none; }
 
 .color-white { color: white; }
 .color-black { color: black; }
