@@ -1,7 +1,8 @@
 import { useContext, useState } from "react";
 
 import { UserContext } from "../contexts/UserContext";
-import style from "./css/Login.module.css";
+
+// import style from "./css/UserMenu.module.css";
 
 function UserMenu() {
   const [email, setEmail] = useState();
@@ -29,7 +30,7 @@ function UserMenu() {
       {!user && (
         <form className="grid-col gap-1" onSubmit={handleSubmit}>
           <div className="grid-col">
-            <label for="email" className="mb-05">
+            <label htmlFor="email" className="mb-05">
               Email:
             </label>
             <input
@@ -43,7 +44,7 @@ function UserMenu() {
           </div>
 
           <div className="grid-col">
-            <label for="password" className="mb-05">
+            <label htmlFor="password" className="mb-05">
               Lösenord:
             </label>
             <input
@@ -56,7 +57,9 @@ function UserMenu() {
             ></input>
           </div>
 
-          <button type="submit">Logga in</button>
+          <button type="submit" className="bg-light color-white">
+            Logga in
+          </button>
 
           {loginFailed && (
             <span className="text-center color-error">
