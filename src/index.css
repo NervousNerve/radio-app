@@ -17,11 +17,14 @@ html {
 body {
   margin: 0;
   overflow-y: scroll;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body, input, select {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 code {
@@ -37,18 +40,10 @@ a.active { font-weight: bold; }
 .link:hover { text-decoration: underline; }
 .link.active { font-weight: bold; }
 
-input {
+input, select {
   font-size: 1rem;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-}
-
-select {
-  font-size: 1rem;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  border: 2px solid var(--color-light);
+  border-radius: 4px;
 }
 
 .container {
@@ -92,13 +87,13 @@ select {
 .m-05   { margin: calc(0.5 * var(--gap-size)); }
 .m-1    { margin: var(--gap-size); }
 
-.mx-0   { margin-left: 0;       margin-right: 0; }
-.mx-05  { margin-left: calc(0.5 * var(--gap-size));  margin-right: calc(0.5 * var(--gap-size)); }
-.mx-1   { margin-left: var(--gap-size);    margin-right: var(--gap-size); }
+.mx-0   { margin-left: 0; margin-right: 0; }
+.mx-05  { margin-left: calc(0.5 * var(--gap-size)); margin-right: calc(0.5 * var(--gap-size)); }
+.mx-1   { margin-left: var(--gap-size); margin-right: var(--gap-size); }
 
-.my-0   { margin-top: 0;        margin-bottom: 0; }
-.my-05  { margin-top: calc(0.5 * var(--gap-size));   margin-bottom: calc(0.5 * var(--gap-size)); }
-.my-1   { margin-top: var(--gap-size);     margin-bottom: var(--gap-size); }
+.my-0   { margin-top: 0; margin-bottom: 0; }
+.my-05  { margin-top: calc(0.5 * var(--gap-size)); margin-bottom: calc(0.5 * var(--gap-size)); }
+.my-1   { margin-top: var(--gap-size); margin-bottom: var(--gap-size); }
 
 .ml-0   { margin-left: 0; }
 .ml-05  { margin-left: calc(0.5 * var(--gap-size)); }
@@ -120,16 +115,16 @@ select {
 .p-05   { padding: calc(0.5 * var(--gap-size)); }
 .p-1    { padding: var(--gap-size); }
 
-.px-0   { padding-left: 0;      padding-right: 0; }
+.px-0   { padding-left: 0; padding-right: 0; }
 .px-05  { padding-left: calc(0.5 * var(--gap-size)); padding-right: calc(0.5 * var(--gap-size)); }
-.px-1   { padding-left: var(--gap-size);   padding-right: var(--gap-size); }
+.px-1   { padding-left: var(--gap-size); padding-right: var(--gap-size); }
 
-.py-0   { padding-top: 0;       padding-bottom: 0; }
-.py-05  { padding-top: calc(0.5 * var(--gap-size));  padding-bottom: calc(0.5 * var(--gap-size)); }
-.py-1   { padding-top: var(--gap-size);    padding-bottom: var(--gap-size); }
+.py-0   { padding-top: 0; padding-bottom: 0; }
+.py-05  { padding-top: calc(0.5 * var(--gap-size)); padding-bottom: calc(0.5 * var(--gap-size)); }
+.py-1   { padding-top: var(--gap-size); padding-bottom: var(--gap-size); }
 
-
-@media screen and (min-width: 375px) {
+/* Biggen than mobile */
+@media screen and (min-width: 512px) {
   :root {
     --bar-height: 4rem;
 
