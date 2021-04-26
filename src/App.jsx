@@ -7,7 +7,6 @@ import Navbar from "./components/Navbar";
 import Home from "./views/Home";
 import Channel from "./views/Channel";
 import Program from "./views/Program";
-import Episode from "./views/Episode";
 
 function App() {
   return (
@@ -22,7 +21,6 @@ function App() {
               </ChannelContextProvider>
             </Route>
             <Route path="/programs/:id" component={Program}></Route>
-            <Route path="/episode/:id" component={Episode}></Route>
             <Route path="/" component={Home}></Route>
           </Switch>
         </QueryParamProvider>
