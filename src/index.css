@@ -1,6 +1,6 @@
 :root {
-  --bg-light: #eeeeee;
-  --bg-dark: #dddddd;
+  --bg-light: #ddd8;
+  --bg-dark: #aaa8;
 
   --color-light: #aaaaaa;
   --color-dark: #666666;
@@ -50,7 +50,7 @@ input, select {
 
 button {
   font-size: 1rem;
-  border: 1px solid var(--color-light);
+  border: none;
   border-radius: 0;
   padding: .25rem;
 }
