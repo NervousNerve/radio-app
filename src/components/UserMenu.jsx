@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+
 import { UserContext } from "../contexts/UserContext";
 import style from "./css/Login.module.css";
 
@@ -7,36 +8,20 @@ function UserMenu() {
   const [password, setPassword] = useState();
   const [loginFailed, setLoginFailed] = useState(false);
 
-  const { user, setUser } = useContext(UserContext);
+  const { user, login, logout } = useContext(UserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     setLoginFailed(false);
 
-    (async () => {
-      const response = await fetch("/api/v1/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
+    if (!login(email, password)) {
+      setLoginFailed(true);
+      return;
+    }
 
-      const data = await response.json();
-
-      if (!data.success) {
-        setLoginFailed(true);
-        return;
-      }
-
-      setEmail("");
-      setPassword("");
-      setUser(data.user);
-    })();
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -81,6 +66,17 @@ function UserMenu() {
 
           <span className="font-size-sm text-center">Registrera användare</span>
         </form>
+      )}
+
+      {user && (
+        <button
+          className="bg-light color-white"
+          onClick={() => {
+            logout();
+          }}
+        >
+          Logga ut
+        </button>
       )}
     </div>
   );
