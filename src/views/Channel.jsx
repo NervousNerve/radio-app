@@ -1,20 +1,31 @@
-import { useContext } from "react";
-import { Route, withRouter } from "react-router";
+import { createContext, useEffect, useState } from "react";
+import { Route, useParams, withRouter } from "react-router";
 import { NavLink } from "react-router-dom";
-
-import { ChannelContext } from "../contexts/ChannelContext";
 
 import Schedule from "./ChannelSchedule";
 import Programs from "./ChannelPrograms";
 import Headerbar from "../components/Headerbar";
 
+export const ChannelContext = createContext();
+
 function Channel(props) {
-  const { channel } = useContext(ChannelContext);
+  const { id } = useParams();
+  const [channel, setChannel] = useState();
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch("/api/v1/channels/" + id);
+      const data = await response.json();
+      setChannel(data);
+    })();
+  }, [id]);
 
   if (!channel) return null;
 
+  const values = { channel };
+
   return (
-    <div>
+    <ChannelContext.Provider value={values}>
       <Headerbar>
         <img
           src={channel.image}
@@ -41,7 +52,7 @@ function Channel(props) {
       <Route path={`/channels/:id/programs`}>
         <Programs />
       </Route>
-    </div>
+    </ChannelContext.Provider>
   );
 }
 

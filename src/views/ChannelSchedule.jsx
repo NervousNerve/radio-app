@@ -2,7 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { useQueryParam } from "use-query-params";
 
-import { ChannelContext } from "../contexts/ChannelContext";
+import { ChannelContext } from "./Channel";
+
 import parseDate from "../util/parseDate";
 import ScheduleList from "../components/ScheduleList";
 import ListItem from "../components/ListItem";
@@ -21,7 +22,7 @@ function Schedule() {
       const response = await fetch(url);
       const data = await response.json();
 
-      // Replace date strings like "/Date(1619215200000)/" with corresponding Date objects
+      // Replace date strings actual Date objects
       for (let e of data) {
         e.starttimeutc = parseDate(e.starttimeutc);
         e.endtimeutc = parseDate(e.endtimeutc);
