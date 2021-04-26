@@ -123,7 +123,7 @@ input, select {
 .py-05  { padding-top: calc(0.5 * var(--gap-size)); padding-bottom: calc(0.5 * var(--gap-size)); }
 .py-1   { padding-top: var(--gap-size); padding-bottom: var(--gap-size); }
 
-/* Biggen than mobile */
+/* Tablets and up */
 @media screen and (min-width: 512px) {
   :root {
     --bar-height: 4rem;
