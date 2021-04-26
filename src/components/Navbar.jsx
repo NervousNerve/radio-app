@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { UserContext } from "../contexts/UserContext";
@@ -16,18 +16,19 @@ function Navbar() {
         <Link to="/" className={style.logo}>
           Radio<strong>Logo</strong>
         </Link>
-        <div className="grid-row justify-end">
-          <p
-            className="link color-white font-size-lg"
-            onClick={() => {
-              setShowUserMenu(!showUserMenu);
-            }}
-          >
-            {user && <span>{user.firstName}</span>}{" "}
+        <div
+          className="grid-row justify-end align-center gap-1 link color-white"
+          onClick={() => {
+            setShowUserMenu(!showUserMenu);
+          }}
+        >
+          {user && <span>{user.firstName}</span>}
+
+          <p className="font-size-lg m-0 text-center" style={{ width: "1em" }}>
             {!showUserMenu ? (
-              <i class="far fa-user"></i>
+              <i className="far fa-user"></i>
             ) : (
-              <i class="fas fa-times"></i>
+              <i className="fas fa-times"></i>
             )}
           </p>
         </div>
