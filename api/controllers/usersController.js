@@ -14,15 +14,14 @@ const login = (req, res) => {
   db.get(query, params, (err, userInDB) => {
     if (!userInDB) {
       console.log("Unauthorized login attempt:", req.body);
-
       res.status(401).json({ error: "Bad credentials" });
       return;
     }
 
     req.body.password = encrypt(req.body.password);
+
     if (userInDB.password !== req.body.password) {
       console.log("Unauthorized login attempt:", req.body);
-
       res.status(401).json({ error: "Bad credentials" });
       return;
     }
