@@ -9,14 +9,29 @@ function UserContextProvider(props) {
 
   useEffect(() => {
     (async () => {
+      // Check for user session
       const response = await fetch("/api/v1/users/whoami");
       const data = await response.json();
 
       if (!data) return;
 
+      // Existing user session found. Log back in
       setUser(data);
     })();
   }, []);
+
+  useEffect(() => {
+    if (!user) {
+      // User logged out. Clear favorites
+      setFavoriteChannels(null);
+      setFavoritePrograms(null);
+      return;
+    }
+
+    // User logged in. Load favorites
+    loadFavoriteChannels();
+    loadFavoritePrograms();
+  }, [user]);
 
   const login = async (email, password) => {
     const response = await fetch("/api/v1/users/login", {
@@ -30,11 +45,9 @@ function UserContextProvider(props) {
       }),
     });
     const data = await response.json();
-
     if (!data.success) return false;
+
     setUser(data.user);
-    loadFavoriteChannels();
-    loadFavoritePrograms();
     return true;
   };
 
@@ -42,9 +55,8 @@ function UserContextProvider(props) {
     const response = await fetch("/api/v1/users/logout");
     const data = await response.json();
     if (!data.success) return false;
+
     setUser(null);
-    setFavoriteChannels(null);
-    setFavoritePrograms(null);
     return true;
   };
 
