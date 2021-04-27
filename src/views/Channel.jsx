@@ -1,16 +1,21 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { Route, useParams, withRouter } from "react-router";
 import { NavLink } from "react-router-dom";
 
 import Schedule from "./ChannelSchedule";
 import Programs from "./ChannelPrograms";
 import Headerbar from "../components/Headerbar";
+import { UserContext } from "../contexts/UserContext";
+import FavoriteButton from "../components/FavoriteButton";
 
 export const ChannelContext = createContext();
 
 function Channel(props) {
   const { id } = useParams();
   const [channel, setChannel] = useState();
+  const { user, favoriteChannels, saveFavoriteChannel } = useContext(
+    UserContext
+  );
 
   useEffect(() => {
     (async () => {
@@ -31,17 +36,33 @@ function Channel(props) {
           src={channel.image}
           alt=""
           style={{ height: "var(--bar-height)" }}
-        ></img>
-        <div className="grid-row align-center bg-dark px-1 height-100">
+        />
+
+        <div className="grid-row align-center px-1 bg-dark">
           <p className="text-bold m-0">{channel.name}</p>
         </div>
-        <div className="grid-row mx-1 gap-1">
+
+        <div className="grid-row align-center mx-1 gap-1">
           <NavLink exact to={`/channels/${channel.id}`}>
             Tablå
           </NavLink>
           <NavLink exact to={`${props.match.url}/programs`}>
             Alla program
           </NavLink>
+        </div>
+
+        <div className="grid-row align-center gap-1 justify-end flex-grow">
+          {user && (
+            <FavoriteButton
+              saved={favoriteChannels && favoriteChannels.includes(channel.id)}
+              onSave={() => {
+                saveFavoriteChannel(channel.id);
+              }}
+              onRemove={() => {
+                saveFavoriteChannel(channel.id);
+              }}
+            />
+          )}
         </div>
       </Headerbar>
 

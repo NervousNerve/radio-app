@@ -19,10 +19,10 @@ function User() {
   return (
     <div>
       <Headerbar>
-        <div className="grid-row align-center bg-dark px-1 height-100">
+        <div className="grid-row align-center px-1 bg-dark">
           <p className="text-bold m-0">Min sida</p>
         </div>
-        <div className="grid-row mx-1 gap-1">
+        <div className="grid-row align-center gap-1 px-1">
           <NavLink exact to="/user/channels">
             Kanaler
           </NavLink>
