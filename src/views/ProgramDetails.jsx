@@ -1,11 +1,15 @@
 import { useContext } from "react";
 
+import { UserContext } from "../contexts/UserContext";
 import { ProgramContext } from "./Program";
 
 import List from "../components/List";
 import ListItem from "../components/ListItem";
 
 function ProgramDetails() {
+  const { user, favoritePrograms, saveFavoriteProgram } = useContext(
+    UserContext
+  );
   const { program, episodes, setEpisodeId } = useContext(ProgramContext);
 
   return (
@@ -18,9 +22,27 @@ function ProgramDetails() {
 
       <p>{program.description}</p>
 
-      <button className="btn-round">
-        <i className="far fa-heart" /> Spara favorit
-      </button>
+      {user && !favoritePrograms.includes(program.id) && (
+        <button
+          className="btn-round"
+          onClick={() => {
+            saveFavoriteProgram(program.id);
+          }}
+        >
+          <i className="fas fa-heart" /> Spara favorit
+        </button>
+      )}
+
+      {user && favoritePrograms.includes(program.id) && (
+        <button
+          className="btn-round"
+          onClick={() => {
+            saveFavoriteProgram(program.id);
+          }}
+        >
+          <i className="fas fa-heart-broken" /> Ta bort favorit
+        </button>
+      )}
 
       <h2>Avsnitt</h2>
       <div className="grid-col gap-1">
