@@ -19,7 +19,7 @@ function ProgramDetails() {
       <p>{program.description}</p>
 
       <button className="btn-round">
-        <i class="far fa-heart" /> Spara favorit
+        <i className="far fa-heart" /> Spara favorit
       </button>
 
       <h2>Avsnitt</h2>
