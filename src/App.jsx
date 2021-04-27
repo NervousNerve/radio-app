@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Home from "./views/Home";
 import Channel from "./views/Channel";
 import Program from "./views/Program";
+import User from "./views/User";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Switch>
               <Route path="/channels/:id" component={Channel} />
               <Route path="/programs/:id" component={Program} />
+              <Route path="/user" component={User} />
               <Route path="/" component={Home} />
             </Switch>
           </UserContextProvider>
