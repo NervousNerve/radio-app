@@ -9,8 +9,8 @@ const whoami = (req, res) => {
 };
 
 const login = (req, res) => {
-  let query = `SELECT * FROM users WHERE email = $email`;
-  let params = { $email: req.body.email };
+  const query = `SELECT * FROM users WHERE email = $email`;
+  const params = { $email: req.body.email };
   db.get(query, params, (err, userInDB) => {
     if (!userInDB) {
       console.log("Unauthorized login attempt:", req.body);
@@ -45,31 +45,35 @@ const logout = (req, res) => {
 };
 
 const register = (req, res) => {
-  let userToRegister = req.body;
+  const userToRegister = req.body;
 
-  let query = `SELECT * FROM users WHERE email = $email`;
-  let params = { $email: userToRegister.email };
-  db.get(query, params, (err, result) => {
-    if (result) {
-      res.status(400).json({ error: "Email already exists" });
-    }
-  });
+  if (
+    !userToRegister.email ||
+    !userToRegister.firstName ||
+    !userToRegister.lastName ||
+    !userToRegister.password
+  ) {
+    res.status(400).json({ error: "Unrecognized request body" });
+    return;
+  }
 
   userToRegister.password = encrypt(userToRegister.password);
 
-  query = `
+  const query = `
     INSERT INTO users (email, firstName, lastName, password)
     VALUES ($email, $firstName, $lastName, $password)`;
-  params = {
+  const params = {
     $email: userToRegister.email,
     $firstName: userToRegister.firstName,
     $lastName: userToRegister.lastName,
     $password: userToRegister.password,
   };
-  db.run(query, params, function (err) {
+  db.run(query, params, (err) => {
     if (err) {
       console.log(err);
-      res.status(400).json({ error: err });
+      if (err.errno == 19)
+        res.status(403).json({ error: "Email already exists" });
+      else res.status(400).json({ error: err });
       return;
     }
 
@@ -80,5 +84,4 @@ const register = (req, res) => {
   });
 };
 
-// Export the differents route handlers
 module.exports = { whoami, login, logout, register };
