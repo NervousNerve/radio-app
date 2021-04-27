@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import { UserContext } from "../contexts/UserContext";
@@ -9,9 +9,25 @@ import style from "./css/Navbar.module.css";
 function Navbar() {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const { user } = useContext(UserContext);
+  const node = useRef();
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (node.current.contains(e.target)) {
+        return;
+      }
+      // Clicked outside Navbar
+      setShowUserMenu(false);
+    };
+
+    document.addEventListener("mousedown", handleClick);
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+    };
+  }, []);
 
   return (
-    <div className="bg-black color-white">
+    <div className="bg-black color-white" ref={node}>
       <div className={`${style.navbar} px-1 container`}>
         <Link to="/" className={style.logo}>
           Radio<strong>Logo</strong>
