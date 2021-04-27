@@ -29,17 +29,19 @@ function UserPrograms() {
     <div className="p-1 container">
       <List>
         {programs &&
-          programs.map((program) => (
-            <ListItem
-              key={program.id}
-              thumbnail={program.programimage}
-              onClick={() => {
-                history.push("/programs/" + program.id);
-              }}
-            >
-              <p className="text-bold m-0">{program.name}</p>
-            </ListItem>
-          ))}
+          programs
+            .sort((a, b) => a.name.localeCompare(b.name, "sv"))
+            .map((program) => (
+              <ListItem
+                key={program.id}
+                thumbnail={program.programimage}
+                onClick={() => {
+                  history.push("/programs/" + program.id);
+                }}
+              >
+                <p className="text-bold m-0">{program.name}</p>
+              </ListItem>
+            ))}
       </List>
     </div>
   );
