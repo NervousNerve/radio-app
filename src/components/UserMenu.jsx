@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 
 import { UserContext } from "../contexts/UserContext";
 
-// import style from "./css/UserMenu.module.css";
+import style from "./css/UserMenu.module.css";
 
 function UserMenu() {
   const [email, setEmail] = useState();
@@ -26,9 +26,12 @@ function UserMenu() {
   };
 
   return (
-    <div className="container px-1 pb-1">
+    <div className={`px-1 pb-1 container`}>
       {!user && (
-        <form className="grid-col gap-1" onSubmit={handleSubmit}>
+        <form
+          className={`grid-col gap-1 ${style.userMenu}`}
+          onSubmit={handleSubmit}
+        >
           <div className="grid-col">
             <label htmlFor="email" className="mb-05">
               Email:
@@ -57,29 +60,35 @@ function UserMenu() {
             ></input>
           </div>
 
-          <button type="submit" className="bg-light color-white">
-            Logga in
-          </button>
+          <div className="grid-col gap-05">
+            <button type="submit" className="bg-light color-white">
+              Logga in
+            </button>
 
-          {loginFailed && (
-            <span className="text-center color-error">
-              Inloggning misslyckades!
+            {loginFailed && (
+              <span className="text-center color-error">
+                Inloggning misslyckades!
+              </span>
+            )}
+
+            <span className="font-size-sm text-center">
+              Registrera användare
             </span>
-          )}
-
-          <span className="font-size-sm text-center">Registrera användare</span>
+          </div>
         </form>
       )}
 
       {user && (
-        <button
-          className="bg-light color-white"
-          onClick={() => {
-            logout();
-          }}
-        >
-          Logga ut
-        </button>
+        <div className={`${style.userMenu} grid-col`}>
+          <button
+            className="bg-light color-white"
+            onClick={() => {
+              logout();
+            }}
+          >
+            Logga ut
+          </button>
+        </div>
       )}
     </div>
   );
