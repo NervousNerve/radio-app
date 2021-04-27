@@ -67,7 +67,7 @@ const addFavoriteChannel = (req, res) => {
 
   const channelId = req.body.id;
   const query = `
-    INSERT INTO favoritePrograms (userId, channelId)
+    INSERT INTO favoriteChannels (userId, channelId)
     VALUES ($userId, $channelId)`;
   const params = { $userId: req.session.user.id, $channelId: channelId };
 
