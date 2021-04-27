@@ -3,7 +3,7 @@ const path = require("path");
 
 const db = new sqlite3.Database(path.join(__dirname, "../../usersdb.db"));
 
-const getFavoritePrograms = (req, res) => {
+const getAllFavoritePrograms = (req, res) => {
   if (!req.session.user) {
     console.log("Unauthorized access");
     res.status(403).json({ error: "Not logged in" });
@@ -39,12 +39,11 @@ const addFavoriteProgram = (req, res) => {
       return;
     }
 
-    console.log("Favorite program added");
     res.json({ success: "Favorite program added" });
   });
 };
 
 module.exports = {
-  getFavoritePrograms,
+  getAllFavoritePrograms,
   addFavoriteProgram,
 };
