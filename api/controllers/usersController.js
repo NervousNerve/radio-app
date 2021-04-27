@@ -2,7 +2,7 @@ const sqlite3 = require("sqlite3");
 const path = require("path");
 const encrypt = require("../encrypt");
 
-const db = new sqlite3.Database(path.join(__dirname, "../usersdb.db"));
+const db = new sqlite3.Database(path.join(__dirname, "../../usersdb.db"));
 
 const whoami = (req, res) => {
   res.json(req.session.user || null);
