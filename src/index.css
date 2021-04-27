@@ -72,8 +72,10 @@ button:hover {
   margin-right: auto;
 }
 
-.grid-row { display: grid;  grid-auto-flow: column; }
-.grid-col { display: grid;  grid-auto-flow: row; }
+.grid-row { display: grid; grid-auto-flow: column; }
+.grid-col { display: grid; grid-auto-flow: row; }
+
+.flex-grow { flex-grow: 1; }
 
 .gap-05 { gap: var(--gap-size-half); }
 .gap-1 { gap: var(--gap-size); }
