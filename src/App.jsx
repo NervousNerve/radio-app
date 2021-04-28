@@ -1,3 +1,4 @@
+import { createContext, useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { QueryParamProvider } from "use-query-params";
 
@@ -8,9 +9,15 @@ import Channel from "./views/Channel";
 import Program from "./views/Program";
 import User from "./views/User";
 
+export const AppContext = createContext();
+
 function App() {
+  const [isLoggedIn, setLoggedIn] = useState(false);
+
+  if (isLoggedIn === undefined || isLoggedIn === null) return null;
+
   return (
-    <div className="App">
+    <AppContext.Provider value={{ isLoggedIn, setLoggedIn }} className="App">
       <BrowserRouter>
         <QueryParamProvider ReactRouterRoute={Route}>
           <UserContextProvider>
@@ -18,13 +25,13 @@ function App() {
             <Switch>
               <Route path="/channels/:id" component={Channel} />
               <Route path="/programs/:id" component={Program} />
-              <Route path="/user" component={User} />
+              {isLoggedIn && <Route path="/user" component={User} />}
               <Route path="/" component={Home} />
             </Switch>
           </UserContextProvider>
         </QueryParamProvider>
       </BrowserRouter>
-    </div>
+    </AppContext.Provider>
   );
 }
 

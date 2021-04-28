@@ -1,4 +1,6 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+
+import { AppContext } from "../App";
 
 export const UserContext = createContext();
 
@@ -6,6 +8,7 @@ function UserContextProvider(props) {
   const [user, setUser] = useState();
   const [favoriteChannels, setFavoriteChannels] = useState();
   const [favoritePrograms, setFavoritePrograms] = useState();
+  const { setLoggedIn } = useContext(AppContext);
 
   useEffect(() => {
     (async () => {
@@ -23,15 +26,17 @@ function UserContextProvider(props) {
   useEffect(() => {
     if (!user) {
       // User logged out. Clear favorites
+      setLoggedIn(false);
       setFavoriteChannels(null);
       setFavoritePrograms(null);
       return;
     }
 
     // User logged in. Load favorites
+    setLoggedIn(true);
     loadFavoriteChannels();
     loadFavoritePrograms();
-  }, [user]);
+  }, [user, setLoggedIn]);
 
   const login = async (email, password) => {
     const response = await fetch("/api/v1/users/login", {

@@ -1,21 +1,10 @@
 import { Route, NavLink, Redirect, Switch } from "react-router-dom";
-import { Route, NavLink, useHistory } from "react-router-dom";
 
 import Headerbar from "../components/Headerbar";
-import { UserContext } from "../contexts/UserContext";
 import UserChannels from "./UserChannels";
 import UserPrograms from "./UserPrograms";
 
 function User() {
-  const history = useHistory();
-  const { user } = useContext(UserContext);
-
-  useEffect(() => {
-    if (!user) history.push("/");
-  }, [history, user]);
-
-  if (!user) return null;
-
   return (
     <div>
       <Headerbar>
