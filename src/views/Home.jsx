@@ -1,4 +1,4 @@
-import { NavLink, Route } from "react-router-dom";
+import { NavLink, Switch, Route, Redirect } from "react-router-dom";
 
 import Programs from "./Programs";
 import Channels from "./Channels";
@@ -8,23 +8,19 @@ function Home() {
   return (
     <div>
       <Headerbar>
-        <div className="grid-row gap-1 align-center px-1">
-          <NavLink exact to="/">
-            Kanaler
-          </NavLink>
-          <NavLink exact to="/programs">
-            Programs
-          </NavLink>
+        <div className="grid-row gap-1 align-center">
+          <NavLink to="/channels">Kanaler</NavLink>
+          <NavLink to="/programs">Programs</NavLink>
         </div>
       </Headerbar>
 
-      <Route exact path={"/"}>
-        <Channels />
-      </Route>
-
-      <Route path={`/programs`}>
-        <Programs />
-      </Route>
+      <Switch>
+        <Route path="/programs" component={Programs} />
+        <Route path="/channels" component={Channels} />
+        <Route path="/">
+          <Redirect to="/channels" />
+        </Route>
+      </Switch>
     </div>
   );
 }
