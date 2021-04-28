@@ -64,7 +64,10 @@ function Schedule() {
                   history.push(`/programs/${episode.program.id}`);
                 }}
               >
-                <p className="text-bold m-0">{episode.title}</p>
+                <p className="text-bold m-0 mb-05">{episode.title}</p>
+                <p className="font-size-sm m-0 color-dark">
+                  {episode.subtitle}
+                </p>
               </ListItem>
             ))}
       </ScheduleList>
