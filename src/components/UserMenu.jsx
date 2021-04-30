@@ -1,29 +1,36 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { UserContext } from "../contexts/UserContext";
+import { NavbarContext } from "./Navbar";
 
 import style from "./css/UserMenu.module.css";
 
 function UserMenu() {
+  const history = useHistory();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [loginFailed, setLoginFailed] = useState(false);
 
   const { user, login, logout } = useContext(UserContext);
+  const { setShowUserMenu } = useContext(NavbarContext);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setLoginFailed(false);
 
-    if (!login(email, password)) {
+    const result = await login(email, password);
+
+    if (!result) {
       setLoginFailed(true);
       return;
     }
 
     setEmail("");
     setPassword("");
+    setShowUserMenu(false);
+    history.push("/user");
   };
 
   return (
@@ -74,6 +81,9 @@ function UserMenu() {
             <Link
               to="/register"
               className="font-size-sm text-center color-white"
+              onClick={() => {
+                setShowUserMenu(false);
+              }}
             >
               Registrera användare
             </Link>
@@ -94,6 +104,7 @@ function UserMenu() {
               className="bg-light color-white"
               onClick={() => {
                 logout();
+                setShowUserMenu(false);
               }}
             >
               Logga ut
