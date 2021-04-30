@@ -15,7 +15,7 @@ export const AppContext = createContext();
 function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
 
-  if (isLoggedIn === undefined || isLoggedIn === null) return null;
+  if (isLoggedIn === undefined) return null;
 
   return (
     <AppContext.Provider value={{ isLoggedIn, setLoggedIn }} className="App">
@@ -26,7 +26,7 @@ function App() {
             <Switch>
               <Route path="/channels/:id" component={Channel} />
               <Route path="/programs/:id" component={Program} />
-              <Route path="/register" component={Register} />
+              {!isLoggedIn && <Route path="/register" component={Register} />}
               {isLoggedIn && <Route path="/user" component={User} />}
               <Route path="/" component={Home} />
             </Switch>
