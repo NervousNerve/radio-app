@@ -38,7 +38,11 @@ const login = (req, res) => {
 };
 
 const logout = (req, res) => {
-  console.log("Logged out:", req.session.user.userName);
+  console.log(
+    "Logged out:",
+    req.session.user.firstName,
+    req.session.user.lastName
+  );
   delete req.session.user;
   res.json({ success: "Logged out successfully" });
 };
