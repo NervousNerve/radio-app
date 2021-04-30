@@ -8,6 +8,7 @@ import Home from "./views/Home";
 import Channel from "./views/Channel";
 import Program from "./views/Program";
 import User from "./views/User";
+import Register from "./views/Register";
 
 export const AppContext = createContext();
 
@@ -25,6 +26,7 @@ function App() {
             <Switch>
               <Route path="/channels/:id" component={Channel} />
               <Route path="/programs/:id" component={Program} />
+              <Route path="/register" component={Register} />
               {isLoggedIn && <Route path="/user" component={User} />}
               <Route path="/" component={Home} />
             </Switch>

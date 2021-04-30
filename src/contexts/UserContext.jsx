@@ -65,6 +65,21 @@ function UserContextProvider(props) {
     return true;
   };
 
+  const register = async (user) => {
+    const response = await fetch("/api/v1/users/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
+
+    const data = await response.json();
+    if (!data.success) return false;
+
+    return true;
+  };
+
   const loadFavoriteChannels = async () => {
     try {
       const response = await fetch("/api/v1/favorites/channels");
@@ -121,6 +136,7 @@ function UserContextProvider(props) {
     user,
     login,
     logout,
+    register,
     favoriteChannels,
     favoritePrograms,
     saveFavoriteChannel,

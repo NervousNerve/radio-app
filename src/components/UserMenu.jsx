@@ -69,11 +69,14 @@ function UserMenu() {
                   Inloggning misslyckades!
                 </span>
               )}
-
-              <span className="font-size-sm text-center">
-                Registrera användare
-              </span>
             </div>
+
+            <Link
+              to="/register"
+              className="font-size-sm text-center color-white"
+            >
+              Registrera användare
+            </Link>
           </form>
         )}
 
