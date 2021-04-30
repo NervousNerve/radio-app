@@ -10,3 +10,12 @@
   color: white;
   font-size: 1.5rem;
 }
+
+.navBtn {
+  background: none;
+  padding: 0;
+}
+.navBtn:hover {
+  background: none;
+  cursor: pointer;
+}

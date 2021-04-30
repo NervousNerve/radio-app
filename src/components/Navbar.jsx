@@ -10,7 +10,7 @@ export const NavbarContext = createContext();
 
 function Navbar() {
   const [showUserMenu, setShowUserMenu] = useState(false);
-  const { user } = useContext(UserContext);
+  const { user, logout } = useContext(UserContext);
   const node = useRef();
 
   useEffect(() => {
@@ -43,26 +43,42 @@ function Navbar() {
           >
             Radio<strong>Logo</strong>
           </Link>
-          <div
-            className="grid-row justify-end align-center gap-1 link color-white"
-            onClick={() => {
-              setShowUserMenu(!showUserMenu);
-            }}
-          >
-            {user && <span>{user.firstName}</span>}
 
-            <p
-              className="font-size-lg m-0 text-center"
-              style={{ width: "1em" }}
-            >
-              {!showUserMenu ? (
-                <i className="far fa-user"></i>
-              ) : (
-                <i className="fas fa-times"></i>
-              )}
-            </p>
+          <div className="grid-row justify-end align-center gap-1">
+            {user && (
+              <Link to="/user" className="link color-white">
+                {user.firstName}
+              </Link>
+            )}
+
+            {user && (
+              <button
+                className={`font-size-lg text-center m-0 color-white ${style.navBtn}`}
+                onClick={() => {
+                  logout();
+                }}
+              >
+                <i className="fas fa-sign-out-alt" />
+              </button>
+            )}
+
+            {!user && (
+              <button
+                className={`font-size-lg text-center m-0 color-white ${style.navBtn}`}
+                onClick={() => {
+                  setShowUserMenu(!showUserMenu);
+                }}
+              >
+                {!showUserMenu ? (
+                  <i className="far fa-user"></i>
+                ) : (
+                  <i className="fas fa-times"></i>
+                )}
+              </button>
+            )}
           </div>
         </div>
+
         {showUserMenu && <UserMenu />}
       </NavbarContext.Provider>
     </div>
