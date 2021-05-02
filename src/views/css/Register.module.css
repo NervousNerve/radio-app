@@ -1,0 +1,8 @@
+.register {
+}
+
+@media screen and (min-width: 512px) {
+  .register {
+    grid-template-columns: 60% 40%;
+  }
+}

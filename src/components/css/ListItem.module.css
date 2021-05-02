@@ -1,0 +1,12 @@
+.listItem {
+  min-height: var(--bar-height);
+}
+
+.listItem:hover {
+  cursor: pointer;
+  background-color: var(--bg-dark);
+}
+
+.thumbnail {
+  width: var(--bar-height);
+}

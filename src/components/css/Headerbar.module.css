@@ -1,0 +1,5 @@
+.headerbar {
+  min-height: var(--bar-height);
+  display: flex;
+  flex-wrap: wrap;
+}
