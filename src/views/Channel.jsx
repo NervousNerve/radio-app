@@ -13,9 +13,12 @@ export const ChannelContext = createContext();
 function Channel(props) {
   const { id } = useParams();
   const [channel, setChannel] = useState();
-  const { user, favoriteChannels, saveFavoriteChannel } = useContext(
-    UserContext
-  );
+  const {
+    user,
+    favoriteChannels,
+    saveFavoriteChannel,
+    deleteFavoriteChannel,
+  } = useContext(UserContext);
 
   useEffect(() => {
     (async () => {
@@ -59,7 +62,7 @@ function Channel(props) {
                 saveFavoriteChannel(channel.id);
               }}
               onRemove={() => {
-                saveFavoriteChannel(channel.id);
+                deleteFavoriteChannel(channel.id);
               }}
             />
           )}

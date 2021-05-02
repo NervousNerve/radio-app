@@ -54,7 +54,7 @@ const addFavoriteProgram = (req, res) => {
       return;
     }
 
-    res.json({ success: "Favorite program added" });
+    res.json({ success: "Program added" });
   });
 };
 
@@ -79,7 +79,47 @@ const addFavoriteChannel = (req, res) => {
       return;
     }
 
-    res.json({ success: "Favorite channel added" });
+    res.json({ success: "Channel added" });
+  });
+};
+
+const deleteFavoriteChannel = (req, res) => {
+  if (!req.session.user) {
+    console.log("Unauthorized access");
+    res.status(403).json({ error: "Not logged in" });
+    return;
+  }
+
+  const query = `DELETE FROM favoriteChannels WHERE channelId = $channelId`;
+  const params = { $channelId: req.params.id };
+
+  db.run(query, params, (err) => {
+    if (err) {
+      console.log(err);
+      res.status(400).json({ error: err });
+      return;
+    }
+    res.json({ success: "Channel deleted" });
+  });
+};
+
+const deleteFavoriteProgram = (req, res) => {
+  if (!req.session.user) {
+    console.log("Unauthorized access");
+    res.status(403).json({ error: "Not logged in" });
+    return;
+  }
+
+  const query = `DELETE FROM favoritePrograms WHERE programId = $programId`;
+  const params = { $programId: req.params.id };
+
+  db.run(query, params, (err) => {
+    if (err) {
+      console.log(err);
+      res.status(400).json({ error: err });
+      return;
+    }
+    res.json({ success: "Program deleted" });
   });
 };
 
@@ -88,4 +128,6 @@ module.exports = {
   getAllFavoritePrograms,
   addFavoriteChannel,
   addFavoriteProgram,
+  deleteFavoriteChannel,
+  deleteFavoriteProgram,
 };

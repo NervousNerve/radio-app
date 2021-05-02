@@ -13,9 +13,12 @@ export const ProgramContext = createContext();
 
 function Program() {
   const { id } = useParams();
-  const { user, favoritePrograms, saveFavoriteProgram } = useContext(
-    UserContext
-  );
+  const {
+    user,
+    favoritePrograms,
+    saveFavoriteProgram,
+    deleteFavoriteProgram,
+  } = useContext(UserContext);
   const [program, setProgram] = useState();
   // All episodes of this program
   const [episodes, setEpisodes] = useState();
@@ -91,7 +94,7 @@ function Program() {
                 saveFavoriteProgram(program.id);
               }}
               onRemove={() => {
-                saveFavoriteProgram(program.id);
+                deleteFavoriteProgram(program.id);
               }}
             />
           )}

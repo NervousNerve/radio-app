@@ -132,6 +132,38 @@ function UserContextProvider(props) {
     setFavoritePrograms([...favoritePrograms, id]);
   };
 
+  const deleteFavoriteChannel = async (id) => {
+    try {
+      const response = await fetch("/api/v1/favorites/channels/" + id, {
+        method: "DELETE",
+      });
+      const data = await response.json();
+      if (!data.success) {
+        console.error(data);
+        return;
+      }
+      setFavoriteChannels(favoriteChannels.filter((c) => c !== id));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const deleteFavoriteProgram = async (id) => {
+    try {
+      const response = await fetch("/api/v1/favorites/programs/" + id, {
+        method: "DELETE",
+      });
+      const data = await response.json();
+      if (!data.success) {
+        console.error(data);
+        return;
+      }
+      setFavoritePrograms(favoritePrograms.filter((p) => p !== id));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const values = {
     user,
     login,
@@ -141,6 +173,8 @@ function UserContextProvider(props) {
     favoritePrograms,
     saveFavoriteChannel,
     saveFavoriteProgram,
+    deleteFavoriteChannel,
+    deleteFavoriteProgram,
   };
 
   return (

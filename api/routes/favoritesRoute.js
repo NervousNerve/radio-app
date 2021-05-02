@@ -7,5 +7,7 @@ router.get("/channels", favoritesController.getAllFavoriteChannels);
 router.get("/programs", favoritesController.getAllFavoritePrograms);
 router.post("/channels", favoritesController.addFavoriteChannel);
 router.post("/programs", favoritesController.addFavoriteProgram);
+router.delete("/programs/:id", favoritesController.deleteFavoriteProgram);
+router.delete("/channels/:id", favoritesController.deleteFavoriteChannel);
 
 module.exports = router;
