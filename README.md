@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# radio-app
 
 App for browsing Sweden's Radio's broadcasts using their public API
 
