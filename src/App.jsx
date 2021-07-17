@@ -19,7 +19,7 @@ function App() {
 
   return (
     <AppContext.Provider value={{ isLoggedIn, setLoggedIn }} className="App">
-      <BrowserRouter>
+      <BrowserRouter basename="/radio-app">
         <QueryParamProvider ReactRouterRoute={Route}>
           <UserContextProvider>
             <Navbar />
