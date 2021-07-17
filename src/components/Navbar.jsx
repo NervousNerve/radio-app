@@ -26,7 +26,7 @@ function Navbar() {
       <NavbarContext.Provider>
         <div className={`${style.navbar} px-1 container`}>
           <Link to="/" className={style.logo}>
-            Radio<strong>Logo</strong>
+            Radio<strong>App</strong>
           </Link>
         </div>
       </NavbarContext.Provider>
