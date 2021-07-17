@@ -9,16 +9,15 @@ import ProgramDetails from "./ProgramDetails";
 import ProgramEpisode from "./ProgramEpisode";
 import FavoriteButton from "../components/FavoriteButton";
 
+import { getProgram } from "../data/programs";
+import { getAllProgramEpisodes, getEpisode } from "../data/episodes";
+
 export const ProgramContext = createContext();
 
 function Program() {
   const { id } = useParams();
-  const {
-    user,
-    favoritePrograms,
-    saveFavoriteProgram,
-    deleteFavoriteProgram,
-  } = useContext(UserContext);
+  const { user, favoritePrograms, saveFavoriteProgram, deleteFavoriteProgram } =
+    useContext(UserContext);
   const [program, setProgram] = useState();
   // All episodes of this program
   const [episodes, setEpisodes] = useState();
@@ -29,24 +28,16 @@ function Program() {
 
   useEffect(() => {
     // Load requested program
-    (async () => {
-      const response = await fetch("/api/v1/programs/" + id);
-      const data = await response.json();
-      setProgram(data);
-    })();
+    getProgram(id).then((prog) => setProgram(prog));
 
     // Load all episode of requested program
-    (async () => {
-      const response = await fetch("/api/v1/episodes?program=" + id);
-      const data = await response.json();
-
+    getAllProgramEpisodes(id).then((eps) => {
       // Replace date strings with actual Date objects
-      for (let e of data) {
+      for (let e of eps) {
         e.publishdateutc = parseDate(e.publishdateutc);
       }
-
-      setEpisodes(data);
-    })();
+      setEpisodes(eps);
+    });
   }, [id]);
 
   // When query param "?episode" changes
@@ -58,15 +49,10 @@ function Program() {
     }
 
     // Load requested episode
-    (async () => {
-      const response = await fetch("/api/v1/episodes/" + episodeId);
-      const data = await response.json();
-
-      // Replace date strings with actual Date objects
-      data.publishdateutc = parseDate(data.publishdateutc);
-
-      setEpisode(data);
-    })();
+    getEpisode(episodeId).then((ep) => {
+      ep.publishdateutc = parseDate(ep.publishdateutc);
+      setEpisode(ep);
+    });
   }, [episodeId]);
 
   if (!program) return null;

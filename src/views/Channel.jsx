@@ -8,24 +8,18 @@ import Headerbar from "../components/Headerbar";
 import { UserContext } from "../contexts/UserContext";
 import FavoriteButton from "../components/FavoriteButton";
 
+import { getChannel } from "../data/channels";
+
 export const ChannelContext = createContext();
 
 function Channel(props) {
   const { id } = useParams();
   const [channel, setChannel] = useState();
-  const {
-    user,
-    favoriteChannels,
-    saveFavoriteChannel,
-    deleteFavoriteChannel,
-  } = useContext(UserContext);
+  const { user, favoriteChannels, saveFavoriteChannel, deleteFavoriteChannel } =
+    useContext(UserContext);
 
   useEffect(() => {
-    (async () => {
-      const response = await fetch("/api/v1/channels/" + id);
-      const data = await response.json();
-      setChannel(data);
-    })();
+    getChannel(id).then((channel) => setChannel(channel));
   }, [id]);
 
   if (!channel) return null;
