@@ -1,21 +1,31 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { Route, useParams, withRouter } from "react-router";
 import { NavLink } from "react-router-dom";
 
 import Schedule from "./ChannelSchedule";
 import Programs from "./ChannelPrograms";
 import Headerbar from "../components/Headerbar";
-
-import { getChannel } from "../data/channels";
+import { UserContext } from "../contexts/UserContext";
+import FavoriteButton from "../components/FavoriteButton";
 
 export const ChannelContext = createContext();
 
 function Channel(props) {
   const { id } = useParams();
   const [channel, setChannel] = useState();
+  const {
+    user,
+    favoriteChannels,
+    saveFavoriteChannel,
+    deleteFavoriteChannel,
+  } = useContext(UserContext);
 
   useEffect(() => {
-    getChannel(id).then((channel) => setChannel(channel));
+    (async () => {
+      const response = await fetch("/api/v1/channels/" + id);
+      const data = await response.json();
+      setChannel(data);
+    })();
   }, [id]);
 
   if (!channel) return null;
@@ -42,6 +52,20 @@ function Channel(props) {
           <NavLink exact to={`${props.match.url}/programs`}>
             Alla program
           </NavLink>
+        </div>
+
+        <div className="grid-row align-center gap-1 justify-end flex-grow">
+          {user && (
+            <FavoriteButton
+              saved={favoriteChannels && favoriteChannels.includes(channel.id)}
+              onSave={() => {
+                saveFavoriteChannel(channel.id);
+              }}
+              onRemove={() => {
+                deleteFavoriteChannel(channel.id);
+              }}
+            />
+          )}
         </div>
       </Headerbar>
 

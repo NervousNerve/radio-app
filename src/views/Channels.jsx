@@ -4,14 +4,16 @@ import { useHistory } from "react-router";
 import List from "../components/List";
 import ListItem from "../components/ListItem";
 
-import { getAllChannels } from "../data/channels";
-
 function Channels() {
   const history = useHistory();
   const [channels, setChannels] = useState();
 
   useEffect(() => {
-    getAllChannels().then((channels) => setChannels(channels));
+    (async () => {
+      const response = await fetch("/api/v1/channels");
+      const data = await response.json();
+      setChannels(data);
+    })();
   }, []);
 
   return (
