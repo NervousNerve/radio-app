@@ -5,6 +5,9 @@ import { useQueryParam } from "use-query-params";
 import List from "../components/List";
 import ListItem from "../components/ListItem";
 
+import { getAllCategories } from "../data/categories";
+import { getAllPrograms } from "../data/programs";
+
 function Programs() {
   const history = useHistory();
 
@@ -13,20 +16,13 @@ function Programs() {
   const [categoryId, setCategoryId] = useQueryParam("category");
 
   useEffect(() => {
-    (async () => {
-      const response = await fetch("/api/v1/categories");
-      const data = await response.json();
-      setCategories(data);
-    })();
+    getAllCategories().then((cats) => setCategories(cats));
   }, []);
 
   useEffect(() => {
-    (async () => {
-      const url = "/api/v1/programs?category=" + categoryId;
-      const response = await fetch(url);
-      const data = await response.json();
-      setPrograms(data);
-    })();
+    getAllPrograms({ category: categoryId }).then((progs) =>
+      setPrograms(progs)
+    );
   }, [categoryId]);
 
   return (
