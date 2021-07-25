@@ -8,6 +8,8 @@ import parseDate from "../util/parseDate";
 import ScheduleList from "../components/ScheduleList";
 import ListItem from "../components/ListItem";
 
+import { getSchedule } from "../data/schedule";
+
 function Schedule() {
   const history = useHistory();
   const { id } = useParams();
@@ -17,18 +19,14 @@ function Schedule() {
 
   useEffect(() => {
     // Fetch schedule for this channel
-    (async () => {
-      let url = `/api/v1/schedule?channel=${id}&date=${dateStr}`;
-      const response = await fetch(url);
-      const data = await response.json();
-
+    getSchedule({ channel: id, date: dateStr }).then((sched) => {
       // Replace date strings actual Date objects
-      for (let e of data) {
+      for (let e of sched) {
         e.starttimeutc = parseDate(e.starttimeutc);
         e.endtimeutc = parseDate(e.endtimeutc);
       }
-      setSchedule(data);
-    })();
+      setSchedule(sched);
+    });
   }, [id, dateStr]);
 
   if (!schedule) return null;
