@@ -3,6 +3,7 @@ import { useHistory, useParams } from "react-router";
 
 import List from "../components/List";
 import ListItem from "../components/ListItem";
+import { getAllPrograms } from "../data/programs";
 
 function Programs() {
   const history = useHistory();
@@ -11,11 +12,7 @@ function Programs() {
 
   useEffect(() => {
     // Fetch schedule for this channel
-    (async () => {
-      const response = await fetch(`/api/v1/programs?channel=${id}`);
-      const data = await response.json();
-      setPrograms(data);
-    })();
+    getAllPrograms({ channel: id }).then((progs) => setPrograms(progs));
   }, [id]);
 
   if (!programs) return null;
