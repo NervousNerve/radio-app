@@ -1,7 +1,5 @@
-import { createContext } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { QueryParamProvider } from "use-query-params";
-
 import firebase from "firebase/app";
 
 import Navbar from "./components/Navbar";
@@ -19,22 +17,18 @@ firebase.initializeApp({
   measurementId: "G-TTPW6EWVFD",
 });
 
-export const AppContext = createContext();
-
 function App() {
   return (
-    <AppContext.Provider className="App" value={{}}>
-      <BrowserRouter basename="/radio-app">
-        <QueryParamProvider ReactRouterRoute={Route}>
-          <Navbar />
-          <Switch>
-            <Route path="/channels/:id" component={Channel} />
-            <Route path="/programs/:id" component={Program} />
-            <Route path="/" component={Home} />
-          </Switch>
-        </QueryParamProvider>
-      </BrowserRouter>
-    </AppContext.Provider>
+    <BrowserRouter basename="/radio-app">
+      <QueryParamProvider ReactRouterRoute={Route}>
+        <Navbar />
+        <Switch>
+          <Route path="/channels/:id" component={Channel} />
+          <Route path="/programs/:id" component={Program} />
+          <Route path="/" component={Home} />
+        </Switch>
+      </QueryParamProvider>
+    </BrowserRouter>
   );
 }
 
