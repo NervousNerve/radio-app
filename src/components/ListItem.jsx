@@ -12,7 +12,7 @@ function ListItem(props) {
         </div>
       )}
 
-      <div className="px-1 py-05">{props.children}</div>
+      <div className="grid-col align-center px-1 py-05">{props.children}</div>
     </div>
   );
 }
