@@ -1,5 +1,7 @@
-import { createContext, useState, useEffect, useRef } from "react";
+import { createContext, useState, useEffect, useRef, useContext } from "react";
 import { Link } from "react-router-dom";
+
+import { AuthContext } from "../contexts/AuthContext";
 
 import UserMenu from "./UserMenu";
 
@@ -10,6 +12,7 @@ export const NavbarContext = createContext();
 function Navbar() {
   const node = useRef();
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const handleClickDocument = (e) => {
@@ -41,6 +44,9 @@ function Navbar() {
                   setShowUserMenu(!showUserMenu);
                 }}
               >
+                {user && (
+                  <span className="px-1 font-size-sm">{user.email}</span>
+                )}
                 {showUserMenu ? (
                   <i className="fas fa-times" />
                 ) : (
